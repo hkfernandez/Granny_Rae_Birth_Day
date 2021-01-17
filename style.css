@@ -1,0 +1,49 @@
+#mainDiv {
+	
+	position: absolute;
+	top:0;
+	left: 0;
+	right: 0;
+  	
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+
+    font-family: 'Berkshire Swash', cursive;
+}
+
+#gifs-appear-here {
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+}
+img {
+    width: 300px;
+}
+button {
+    color:white;
+    font-size: 3em;
+    font-family: 'Patua One', cursive;
+
+    background-color: red;
+    border-radius: 50%;
+    
+    padding: 1em;
+
+    height: 400px;
+    width: 400px;
+}
+.message{
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5em;
+    text-align: right;
+}
+.message2{
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5em;
+    text-align: right;
+    padding-right: 2em;
+    padding-bottom: .5em;
+}

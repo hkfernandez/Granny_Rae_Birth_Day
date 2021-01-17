@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quoth the Giphy</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Comfortaa:wght@700&family=Patua+One&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="mainDiv">
+    <h1> Granny Rae's Birthday Page</h1>
+    <div id="buttons">
+      <button>
+        Click Here to Have a Happy Birthday
+      </button>
+    </div>
+
+    <div id="gifs-appear-here">
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    
+    $("button").on("click", function() {
+      $("#buttons").empty();
+      $("#gifs-appear-here").empty();
+      var searchTerm = "Happy Birthday";
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        searchTerm + "&api_key=dc6zaTOxFJmzC&limit=20";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        .then(function(response) {
+          var results = response.data;
+          var currentGif = 1
+          var gifDiv = $("<div>");
+          var image = $("<img>");
+
+          image.attr("src", results[0].images.fixed_height.url);
+          gifDiv.prepend(image);
+          $("#gifs-appear-here").prepend(gifDiv);
+
+           var e = setInterval(() => {
+            var gifDiv = $("<div>");
+            var image = $("<img>");
+
+            image.attr("src", results[currentGif].images.fixed_height.url);
+            gifDiv.prepend(image);
+            $("#gifs-appear-here").prepend(gifDiv);
+
+            currentGif ++
+
+            if (currentGif === 20){
+              clearInterval (e);
+            }
+          }, 6000);
+
+          setTimeout(function () {
+
+            $("#buttons").append($("<div>").text("Sending you love on your special day!").attr("class", "message"));
+            $("#buttons").append($("<div>").text("- your son").attr("class", "message2"));
+          }, 2000);
+          
+        });
+    });
+  </script>
+</body>
+
+</html>
